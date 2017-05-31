@@ -32,9 +32,18 @@
 
     ///////////////////////////
     // Put your code here!
+    function LivingThing(name, health){
+        this.name = name;
+        this.health = health;
+    }
+    let rat    = new LivingThing("Rat", 5);
+    let goblin = new LivingThing("Goblin", 30);
+    let ogre   = new LivingThing("Ogre", 80);
+
+    let monsters = [rat, goblin, ogre];
     ///////////////////////////
 
-    
+
     //The code below should work when you are done
     console.log("Monsters!");
 
@@ -47,18 +56,14 @@
         console.log(monster.name + ": " + monster.health);
     }
 
-    //just a spacer
+    // //just a spacer
     console.log("===================");
-
-    //for loop loop supported before ES6
-    //@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
+    //
+    // //for loop loop supported before ES6
+    // //@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
     console.log("for loop for support before ES6");
     for (let i=0; i < monsters.length; i++) {
         console.log(monsters[i].name + ": " + monsters[i].health);
     }
 
 })();
-    
-
-
-    

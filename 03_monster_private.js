@@ -20,10 +20,36 @@
 
     ///////////////////////////
     // Put your code here!
+    function LivingThing(name, health){
+        var name = name;
+        var health = health;
+
+        this.isAlive = function(){
+              if (this.health > 0){
+                return true;
+              } else {
+                return false;
+              }
+            }
+
+        this.getName = function(){
+            return name;
+        }
+
+        this.getHealth = function(){
+            return health;
+        }
+    }
+
+    let rat    = new LivingThing("Rat", 5);
+    let goblin = new LivingThing("Goblin", 30);
+    let ogre   = new LivingThing("Ogre", 80);
+
+    let monsters = [rat, goblin, ogre];
     ///////////////////////////
 
-    
-    
+
+
     //The code below should work when you are done
     console.log("Monsters!");
 
@@ -33,7 +59,7 @@
     //@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
     console.log("ES6 for...in");
     for (let monster of monsters) {
-        console.log(monster.name + ": " + monster.health);
+        console.log(monster.getName() + ": " + monster.getHealth());
     }
 
     //just a spacer
@@ -43,7 +69,7 @@
     //@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
     console.log("for loop for support before ES6");
     for (let i=0; i < monsters.length; i++) {
-        console.log(monsters[i].name + ": " + monsters[i].health);
+        console.log(monsters[i].getName() + ": " + monsters[i].getHealth());
     }
 
 })();

@@ -38,9 +38,101 @@
 
     ///////////////////////////
     // Put your code here!
-    ///////////////////////////
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 
-    
+    function LivingThing(name, health){
+        var name = name;
+        var health = health;
+
+        this.isAlive = function(){
+              if (health > 0){
+                return true;
+              } else {
+                return false;
+              }
+            }
+
+        this.getName = function(){
+            return name;
+        }
+        this.getHealth = function(){
+            return health;
+        }
+        this.setHealth = function(newHealth){
+            health = newHealth;
+        }
+    }
+
+    function Hero(name, health) {
+        LivingThing.call(this, name, health);
+
+        // 1. Reduce the LivingThing object's health by a random value between 0 and 10.
+        // * 2. Reduce the hero's health by a random value between 0 and 10.
+        // * 3. Print out how much damage the monster and hero did to each other.
+        this.attack = function(LivingThing) {
+            console.log("=====================================");
+            console.log("Hero vs " + LivingThing.getName());
+
+            // reduce monsters health
+            let x = getRandomInt(0, 10);
+            let monster_currHealth = LivingThing.getHealth();
+            LivingThing.setHealth(monster_currHealth - x);
+            console.log(LivingThing.getName() + " before=" + monster_currHealth + " - " + x + " after=" + LivingThing.getHealth());
+
+            // reduce heros health
+            let y = getRandomInt(0, 10);
+            let hero_currHealth = this.getHealth();
+            this.setHealth(hero_currHealth - y);
+            console.log(this.getName() + " before=" + hero_currHealth + " - " + y + " after=" + this.getHealth());
+        } // end Attack
+
+        // Give the Hero object another method named "fight" that takes as a parameter an array of LivingThing objects
+        // * and does the following:
+        // *  - For each LivingThing object in the array, call the "attack" method so the hero can attack the monster.
+        // *     - But, don't attack if the LivingThing is already dead!
+        // *  - Repeat the process until all the monsters or the hero is dead.
+        this.fight = function(monsters) {
+
+            // while the hero is still alive...
+            //console.log("starting fight method");
+            //console.log("is Dan alive? " + this.isAlive());
+            //console.log("Dan health: " + this.getHealth());
+
+            while (this.isAlive()){
+                //console.log("inside the while loop");
+
+                for (let i = 0; i < monsters.length; i++){
+                    //console.log(monsters[i]);
+                    if (monsters[i].isAlive()) {
+                        this.attack(monsters[i]);
+                    } // end check to see if monster is alive
+                } // end for loop
+
+                if (monsters[0].isAlive() || monsters[1].isAlive() || monsters[2].isAlive()) {
+                    continue;
+                } else {
+                    break;
+                }
+
+            } // end while loop
+            console.log("=====================================");
+
+        } // end fight function
+
+    } // end Hero
+
+    let rat    = new LivingThing("Rat", 5);
+    let goblin = new LivingThing("Goblin", 30);
+    let ogre   = new LivingThing("Ogre", 80);
+
+    let hero = new Hero("Dan", 1000);  // stack the deck in our hero's favor!
+
+    let monsters = [rat, goblin, ogre];
+    ///////////////////////////
 
     //The code below should work when you are done
     console.log("A hero emerges!");
